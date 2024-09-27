@@ -26,19 +26,28 @@ namespace PayCalculator
 
         private void calcButton_Click(object sender, EventArgs e)
         {
-            //get inputs
-            hours = Convert.ToDouble(hoursInput.Text);
-            payRate = Convert.ToDouble(payRateInput.Text);
+            try
+            {
+                //get inputs
+                hours = Convert.ToDouble(hoursInput.Text);
+                payRate = Convert.ToDouble(payRateInput.Text);
 
-            //calculate values
-            pretax = hours * payRate;
-            taxAmount = pretax * 0.25;
-            earned = pretax - taxAmount;
+                //calculate values
+                pretax = hours * payRate;
+                taxAmount = pretax * 0.25;
+                earned = pretax - taxAmount;
 
-            //display outputs
-            pretaxOutput.Text = $"{pretax.ToString("$.00")}";
-            taxOutput.Text = $"{taxAmount.ToString("C")}";
-            earnedOutput.Text = $"{earned.ToString("C")}";
+                //display outputs
+                pretaxOutput.Text = $"{pretax.ToString("$.00")}";
+                taxOutput.Text = $"{taxAmount.ToString("C")}";
+                earnedOutput.Text = $"{earned.ToString("C")}";
+            }
+            catch 
+            {
+                pretaxOutput.Text = $"ERROR";
+                taxOutput.Text = $"";
+                earnedOutput.Text = $"";
+            }
         }
     }
 }
